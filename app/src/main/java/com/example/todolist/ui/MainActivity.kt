@@ -31,7 +31,9 @@ class MainActivity : AppCompatActivity() {
 
         }
         taskListAdapter.listenerEditTask = {
-
+            val intent = Intent(this, AddTaskActivity::class.java)
+            intent.putExtra(Constants.TASK_ID, it.id)
+            startActivityForResult(intent, Constants.CREATE_NEW_TASK)
         }
     }
 

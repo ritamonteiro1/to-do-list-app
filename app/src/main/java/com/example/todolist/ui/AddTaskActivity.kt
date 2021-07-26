@@ -21,6 +21,10 @@ class AddTaskActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddTaskBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        if(intent.hasExtra(Constants.TASK_ID)){
+            val taskId = intent.getIntExtra(Constants.TASK_ID, Constants.DEFAULT_TASK_ID)
+            TaskDataSource.findById(taskId)
+        }
         setupListeners()
     }
 

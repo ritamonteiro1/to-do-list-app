@@ -9,5 +9,7 @@ class Constants {
         const val TIME_PICKER = "time picker"
         const val OPERATOR_TASK_LIST_SIZE = 1
         const val CREATE_NEW_TASK = 1000
+        const val TASK_ID = "task id"
+        const val DEFAULT_TASK_ID = 0
     }
 }
