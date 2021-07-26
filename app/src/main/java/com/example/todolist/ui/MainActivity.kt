@@ -25,6 +25,12 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, AddTaskActivity::class.java)
             startActivityForResult(intent, Constants.CREATE_NEW_TASK)
         }
+        taskListAdapter.listenerDeleteTask = {
+
+        }
+        taskListAdapter.listenerEditTask = {
+
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

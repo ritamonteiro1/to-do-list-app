@@ -6,11 +6,14 @@ import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.todolist.R
 import com.example.todolist.databinding.ItemTaskBinding
 import com.example.todolist.model.Task
 
 
 class TaskListAdapter : ListAdapter<Task, TaskListAdapter.TaskListViewHolder>(DiffCallback()) {
+    var listenerEditTask: (Task) -> Unit = {}
+    var listenerDeleteTask: (Task) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskListViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -28,13 +31,21 @@ class TaskListAdapter : ListAdapter<Task, TaskListAdapter.TaskListViewHolder>(Di
             binding.itemTaskTitleTextView.text = task.title
             binding.itemTaskHourTextView.text = "${task.date} ${task.hour}"
             binding.itemTaskImageView.setOnClickListener {
-                showPopup()
+                showPopup(task)
             }
         }
 
-        private fun showPopup() {
+        private fun showPopup(task: Task) {
             val popupMenu = PopupMenu(binding.itemTaskImageView.context, binding.itemTaskImageView)
-            popupMenu.menuInflater.inflate()
+            popupMenu.menuInflater.inflate(R.menu.menu, popupMenu.menu)
+            popupMenu.setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.menuEdit -> listenerEditTask(task)
+                    R.id.menuDelete -> listenerDeleteTask(task)
+                }
+                return@setOnMenuItemClickListener true
+            }
+            popupMenu.show()
         }
     }
 }
