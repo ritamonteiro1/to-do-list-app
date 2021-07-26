@@ -3,7 +3,8 @@
     <string name="app_name">ToDoList</string>
     <!--    activity_main.xml-->
     <string name="main_content_description_button">Clique aqui para criar uma tarefa</string>
-<!--    activity_add_task.xml-->
+    <string name="main_toolbar_title">Tarefas</string>
+    <!--    activity_add_task.xml-->
     <string name="add_task_toolbar_title">Criar tarefa</string>
     <string name="add_task_text_input_layout_title_hint">Título</string>
     <string name="add_task_text_input_layout_description_hint">Descrição</string>
