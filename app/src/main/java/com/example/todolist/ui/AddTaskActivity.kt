@@ -3,8 +3,10 @@ package com.example.todolist.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.todolist.constants.Constants
+import com.example.todolist.data.source.TaskDataSource
 import com.example.todolist.databinding.ActivityAddTaskBinding
 import com.example.todolist.extensions.format
+import com.example.todolist.model.Task
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
@@ -22,30 +24,43 @@ class AddTaskActivity : AppCompatActivity() {
 
     private fun setupListeners() {
         binding.addTaskDateTextInputLayout.editText?.setOnClickListener {
-            listenerAddTaskDateTextInputLayout()
+            listenerDateTextInputLayout()
         }
 
         binding.addTaskHourTextInputLayout.editText?.setOnClickListener {
-            listenerAddTaskHourTextInputLayout()
+            listenerHourTextInputLayout()
         }
         binding.addTaskCancelButton.setOnClickListener {
             finish()
         }
         binding.addTaskNewTaskButton.setOnClickListener {
-
+            listenerNewTaskButton()
         }
     }
 
-    private fun listenerAddTaskHourTextInputLayout() {
+    private fun listenerNewTaskButton() {
+        val task = Task(
+            binding.addTaskTitleEditText.text.toString(),
+            binding.addTaskDescriptionEditTextMultiLine.text.toString(),
+            binding.addTaskDateEditText.text.toString(),
+            binding.addTaskHourEditText.text.toString()
+        )
+        TaskDataSource.insertTask(task)
+    }
+
+    private fun listenerHourTextInputLayout() {
         val timePicker =
             MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_24H).build()
         timePicker.addOnPositiveButtonClickListener {
-            binding.addTaskHourTextInputLayout.editText?.setText("${timePicker.hour} ${timePicker.minute}")
+            val minute =
+                if (timePicker.minute in 0..9) "0${timePicker.minute}" else timePicker.minute
+            val hour = if (timePicker.hour in 0..9) "0${timePicker.hour}" else timePicker.hour
+            binding.addTaskHourTextInputLayout.editText?.setText("$hour:$minute")
         }
         timePicker.show(supportFragmentManager, Constants.TIME_PICKER)
     }
 
-    private fun listenerAddTaskDateTextInputLayout() {
+    private fun listenerDateTextInputLayout() {
         val datePicker = MaterialDatePicker.Builder.datePicker().build()
         datePicker.addOnPositiveButtonClickListener {
             val timeZone = TimeZone.getDefault()
