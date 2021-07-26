@@ -1,0 +1,6 @@
+<resources>
+<!--    AndroidManifest-->
+    <string name="app_name">ToDoList</string>
+<!--    activity_main.xml-->
+    <string name="main_content_description_button">Clique aqui para criar uma tarefa</string>
+</resources>
