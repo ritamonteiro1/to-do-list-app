@@ -2,6 +2,7 @@ package com.example.todolist.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -26,11 +27,19 @@ class TaskListAdapter : ListAdapter<Task, TaskListAdapter.TaskListViewHolder>(Di
         fun bind(task: Task) {
             binding.itemTaskTitleTextView.text = task.title
             binding.itemTaskHourTextView.text = "${task.date} ${task.hour}"
+            binding.itemTaskImageView.setOnClickListener {
+                showPopup()
+            }
+        }
+
+        private fun showPopup() {
+            val popupMenu = PopupMenu(binding.itemTaskImageView.context, binding.itemTaskImageView)
+            popupMenu.menuInflater.inflate()
         }
     }
 }
 
-class DiffCallback: DiffUtil.ItemCallback<Task>(){
+class DiffCallback : DiffUtil.ItemCallback<Task>() {
     override fun areItemsTheSame(oldItem: Task, newItem: Task) = oldItem == newItem
     override fun areContentsTheSame(oldItem: Task, newItem: Task) = oldItem.id == newItem.id
 }

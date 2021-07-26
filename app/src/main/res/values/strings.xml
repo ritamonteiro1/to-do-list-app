@@ -12,4 +12,9 @@
     <string name="add_task_text_input_layout_hour_hint">Hora</string>
     <string name="add_task_button_title_cancel">Cancelar</string>
     <string name="add_task_button_text_new_task">Criar tarefa</string>
+<!--    item_task.xml-->
+    <string name="item_task_content_description_image">Toque aqui para editar a tarefa</string>
+<!--    menu.xml-->
+    <string name="menu_edit">Editar</string>
+    <string name="menu_delete">Deletar</string>
 </resources>

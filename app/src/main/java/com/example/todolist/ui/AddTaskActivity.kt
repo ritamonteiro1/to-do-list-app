@@ -1,5 +1,6 @@
 package com.example.todolist.ui
 
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.todolist.constants.Constants
@@ -46,6 +47,8 @@ class AddTaskActivity : AppCompatActivity() {
             binding.addTaskHourEditText.text.toString()
         )
         TaskDataSource.insertTask(task)
+        setResult(Activity.RESULT_OK)
+        finish()
     }
 
     private fun listenerHourTextInputLayout() {
