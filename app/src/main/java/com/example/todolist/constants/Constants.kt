@@ -11,5 +11,6 @@ class Constants {
         const val CREATE_NEW_TASK = 1000
         const val TASK_ID = "task id"
         const val DEFAULT_TASK_ID = 0
+        const val NEW_TASK_ID = 0
     }
 }

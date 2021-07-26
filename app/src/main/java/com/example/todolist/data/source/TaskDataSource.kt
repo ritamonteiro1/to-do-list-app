@@ -9,10 +9,15 @@ object TaskDataSource {
     fun getTaskList() = taskList.toList()
 
     fun insertTask(task: Task) {
-        taskList.add(task.copy(id = taskList.size + Constants.OPERATOR_TASK_LIST_SIZE))
+        if (task.id == Constants.NEW_TASK_ID) {
+            taskList.add(task.copy(id = taskList.size + Constants.OPERATOR_TASK_LIST_SIZE))
+        } else {
+            taskList.remove(task)
+            taskList.add(task)
+        }
     }
 
     fun findById(taskId: Int) = taskList.find {
-            it.id == taskId
+        it.id == taskId
     }
 }

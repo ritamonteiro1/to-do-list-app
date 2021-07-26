@@ -21,9 +21,14 @@ class AddTaskActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddTaskBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        if(intent.hasExtra(Constants.TASK_ID)){
+        if (intent.hasExtra(Constants.TASK_ID)) {
             val taskId = intent.getIntExtra(Constants.TASK_ID, Constants.DEFAULT_TASK_ID)
-            TaskDataSource.findById(taskId)
+            TaskDataSource.findById(taskId)?.let {
+                binding.addTaskTitleEditText.setText(it.title)
+                binding.addTaskDateEditText.setText(it.date)
+                binding.addTaskHourEditText.setText(it.hour)
+                binding.addTaskDescriptionEditTextMultiLine.setText(it.description)
+            }
         }
         setupListeners()
     }
@@ -57,7 +62,8 @@ class AddTaskActivity : AppCompatActivity() {
             binding.addTaskTitleEditText.text.toString(),
             binding.addTaskDescriptionEditTextMultiLine.text.toString(),
             binding.addTaskHourEditText.text.toString(),
-            binding.addTaskDateEditText.text.toString()
+            binding.addTaskDateEditText.text.toString(),
+            intent.getIntExtra(Constants.TASK_ID, Constants.DEFAULT_TASK_ID)
         )
         TaskDataSource.insertTask(task)
         setResult(Activity.RESULT_OK)
