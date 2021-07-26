@@ -52,8 +52,8 @@ class AddTaskActivity : AppCompatActivity() {
         val task = Task(
             binding.addTaskTitleEditText.text.toString(),
             binding.addTaskDescriptionEditTextMultiLine.text.toString(),
-            binding.addTaskDateEditText.text.toString(),
-            binding.addTaskHourEditText.text.toString()
+            binding.addTaskHourEditText.text.toString(),
+            binding.addTaskDateEditText.text.toString()
         )
         TaskDataSource.insertTask(task)
         setResult(Activity.RESULT_OK)

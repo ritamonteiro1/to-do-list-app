@@ -1,5 +1,6 @@
 package com.example.todolist.ui
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.mainReyclerView.adapter = taskListAdapter
+        updateTaskList()
         setupListeners()
     }
 
@@ -35,9 +37,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == Constants.CREATE_NEW_TASK) {
-            binding.mainReyclerView.adapter = taskListAdapter
-            taskListAdapter.submitList(TaskDataSource.getTaskList())
+        if (requestCode == Constants.CREATE_NEW_TASK && resultCode == Activity.RESULT_OK) {
+            updateTaskList()
         }
+    }
+
+    private fun updateTaskList() {
+        taskListAdapter.submitList(TaskDataSource.getTaskList())
     }
 }

@@ -6,7 +6,7 @@ import com.example.todolist.model.Task
 object TaskDataSource {
     private val taskList = arrayListOf<Task>()
 
-    fun getTaskList() = taskList
+    fun getTaskList() = taskList.toList()
 
     fun insertTask(task: Task) {
         taskList.add(task.copy(id = taskList.size + Constants.OPERATOR_TASK_LIST_SIZE))
