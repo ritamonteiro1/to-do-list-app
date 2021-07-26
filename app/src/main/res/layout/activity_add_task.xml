@@ -5,7 +5,7 @@
     android:id="@+id/addTaskConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddTaskActivity">
+    tools:context=".ui.AddTaskActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/addTaskToolBar"
