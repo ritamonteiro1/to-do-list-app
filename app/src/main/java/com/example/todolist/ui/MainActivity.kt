@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.example.todolist.adapter.TaskListAdapter
 import com.example.todolist.constants.Constants
 import com.example.todolist.data.source.TaskDataSource
@@ -46,6 +47,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateTaskList() {
-        taskListAdapter.submitList(TaskDataSource.getTaskList())
+        val taskList = TaskDataSource.getTaskList()
+        if(taskList.isEmpty()){
+            binding.mainIncludeEmptyState.emptyStateConstraintLayout.visibility = View.VISIBLE
+        } else {
+            binding.mainIncludeEmptyState.emptyStateConstraintLayout.visibility = View.GONE
+        }
+        taskListAdapter.submitList(taskList)
     }
 }
