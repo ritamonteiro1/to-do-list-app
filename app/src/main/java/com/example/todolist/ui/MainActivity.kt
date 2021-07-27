@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(intent, Constants.CREATE_NEW_TASK)
         }
         taskListAdapter.listenerDeleteTask = {
-
+            TaskDataSource.deleteTask(it)
         }
         taskListAdapter.listenerEditTask = {
             val intent = Intent(this, AddTaskActivity::class.java)
