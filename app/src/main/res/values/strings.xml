@@ -17,4 +17,6 @@
 <!--    menu.xml-->
     <string name="menu_edit">Editar</string>
     <string name="menu_delete">Deletar</string>
+<!--    empty_state.xml-->
+    <string name="empty_state_text">Ops! Você não possui nenhuma tarefa</string>
 </resources>
